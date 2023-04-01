@@ -18,7 +18,7 @@ public class EightBallItem extends Item {
     }
     // Indicates that this class method is over-writing its base class method (custom modification to base item code)
     @Override
-    // Function that gives the item a right-click use
+    // Function that gives the item a right-click use: tells the player a random number
     public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
         // Make it happen server-side. By default, happens twice. Main hand makes it happen once.
         if(!world.isClient() && hand == Hand.MAIN_HAND){

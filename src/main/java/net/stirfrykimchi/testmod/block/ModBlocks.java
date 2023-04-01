@@ -12,6 +12,7 @@ import net.minecraft.util.Identifier;
 import net.minecraft.util.math.intprovider.UniformIntProvider;
 import net.minecraft.util.registry.Registry;
 import net.stirfrykimchi.testmod.TestMod;
+import net.stirfrykimchi.testmod.block.custom.JumpyBlock;
 import net.stirfrykimchi.testmod.item.ModItemGroup;
 
 public class ModBlocks {
@@ -36,6 +37,10 @@ public class ModBlocks {
     public static final Block ENDSTONE_TANZANITE_ORE = registerBlock("endstone_tanzanite_ore",
             new OreBlock(FabricBlockSettings.of(Material.STONE).strength(4f).requiresTool(),
                     UniformIntProvider.create(6, 12)), ModItemGroup.TANZANITE);
+
+    // Adds in the Jumpy Block
+    public static final Block JUMPY_BLOCK = registerBlock("jumpy_block",
+            new JumpyBlock(FabricBlockSettings.of(Material.STONE).strength(4f).requiresTool()), ModItemGroup.TANZANITE);
 
     // Creates a way to add blocks (this is the function used above)
     private static Block registerBlock(String name, Block block, ItemGroup tab){
