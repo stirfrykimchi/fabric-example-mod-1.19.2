@@ -2,17 +2,25 @@ package net.stirfrykimchi.testmod.block.custom;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
+import net.minecraft.client.gui.screen.Screen;
+import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.ItemStack;
 import net.minecraft.text.Text;
 import net.minecraft.util.ActionResult;
+import net.minecraft.util.Formatting;
 import net.minecraft.util.Hand;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
+import org.jetbrains.annotations.Nullable;
+
+import java.util.List;
 
 // Middle-click 'Block' after extends to see the source code for blocks. Works for items too.
 // After "tabbing" 'Block', hover over method line and construct super.
@@ -43,5 +51,17 @@ public class JumpyBlock extends Block {
             player.sendMessage(Text.literal("You right-clicked this block!"));
         }
         return super.onUse(state, world, pos, player, hand, hit);
+    }
+
+    // Function that gives the item a tooltip
+
+    @Override
+    public void appendTooltip(ItemStack stack, @Nullable BlockView world, List<Text> tooltip, TooltipContext options) {
+        if(Screen.hasShiftDown()){
+            tooltip.add(Text.literal("Gives Jump Boost 3 if stepped on").formatted(Formatting.AQUA));
+        } else {
+            tooltip.add(Text.literal("[Hold Shift for more info]").formatted(Formatting.YELLOW));
+        }
+        super.appendTooltip(stack, world, tooltip, options);
     }
 }

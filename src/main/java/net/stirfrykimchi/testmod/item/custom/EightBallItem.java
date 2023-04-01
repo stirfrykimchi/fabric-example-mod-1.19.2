@@ -1,13 +1,19 @@
 package net.stirfrykimchi.testmod.item.custom;
 
+import net.minecraft.client.gui.screen.Screen;
+import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.text.Text;
+import net.minecraft.util.Formatting;
 import net.minecraft.util.Hand;
 import net.minecraft.util.TypedActionResult;
 import net.minecraft.util.math.random.Random;
 import net.minecraft.world.World;
+import org.jetbrains.annotations.Nullable;
+
+import java.util.List;
 
 // extends Item: Opens access Minecraft's source code
 public class EightBallItem extends Item {
@@ -41,4 +47,17 @@ public class EightBallItem extends Item {
         return Random.createLocal().nextInt(10);
     }
 
+    @Override
+    // appendToolTip: Extra information on an item when hovering over it and holding a keybind
+    // Function that gives the item a tooltip
+    public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
+        // Checks if player is holding down shift
+        if(Screen.hasShiftDown()){
+            // Displays a tip in yellow if holding shift while hovering
+            tooltip.add(Text.literal("Generate a random number, just for you  :)").formatted(Formatting.AQUA));
+        } else { // Displays a tip in white to hold shift when hovering
+            tooltip.add(Text.literal("[Hold Shift for more info]").formatted(Formatting.YELLOW));
+        }
+        super.appendTooltip(stack, world, tooltip, context);
+    }
 }
