@@ -53,9 +53,9 @@ public class JumpyBlock extends Block {
         return super.onUse(state, world, pos, player, hand, hit);
     }
 
-    // Function that gives the item a tooltip
-
     @Override
+    // append: Fancy word for 'add'
+    // Function that gives the item a tooltip
     public void appendTooltip(ItemStack stack, @Nullable BlockView world, List<Text> tooltip, TooltipContext options) {
         if(Screen.hasShiftDown()){
             tooltip.add(Text.literal("Gives Jump Boost 3 if stepped on").formatted(Formatting.AQUA));

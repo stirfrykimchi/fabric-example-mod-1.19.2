@@ -13,6 +13,7 @@ import net.minecraft.util.math.intprovider.UniformIntProvider;
 import net.minecraft.util.registry.Registry;
 import net.stirfrykimchi.testmod.TestMod;
 import net.stirfrykimchi.testmod.block.custom.JumpyBlock;
+import net.stirfrykimchi.testmod.block.custom.TanzaniteLampBlock;
 import net.stirfrykimchi.testmod.item.ModItemGroup;
 
 public class ModBlocks {
@@ -41,6 +42,11 @@ public class ModBlocks {
     // Adds in the Jumpy Block
     public static final Block JUMPY_BLOCK = registerBlock("jumpy_block",
             new JumpyBlock(FabricBlockSettings.of(Material.STONE).strength(4f).requiresTool()), ModItemGroup.TANZANITE);
+    // Adds in the Tanzanite Lamp Block
+    // luminance line: put in a blockstate, and returns an integer. luminance is 15 or 0 if true/false.
+    public static final Block TANZANITE_LAMP = registerBlock("tanzanite_lamp",
+            new TanzaniteLampBlock(FabricBlockSettings.of(Material.STONE).strength(4f).requiresTool()
+                    .luminance(state -> state.get(TanzaniteLampBlock.LIT) ? 15 : 0)), ModItemGroup.TANZANITE);
 
     // Creates a way to add blocks (this is the function used above)
     private static Block registerBlock(String name, Block block, ItemGroup tab){
